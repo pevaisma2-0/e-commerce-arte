@@ -22,16 +22,16 @@ const agregarProducto = (e)=>{
     }
    if (validacion) {
         let envio = new FormData(formAgregar);
-        fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/producto", {
+        fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/agregar", {
             method: "POST",
             body: envio
-        }).then(res =>{res.text()})
-        .then(respuesta=>{
-            console.log(respuesta)
-                errorDiv.classList.add('alert');
-                errorDiv.classList.remove('alert-danger');
-                errorDiv.classList.add('alert-success');
-                errorDiv.innerHTML = "Se ha agregado el Producto Exitosamente";   
+        }).then(res =>res.json())
+        .then(Response=>{
+            errorDiv.classList.add('alert');
+            errorDiv.classList.remove('alert-danger');
+            errorDiv.classList.add('alert-success');
+            errorDiv.innerHTML = Response;   
+            console.log(Response);
         });
         select = 0
         textarea.innerHTML = ""
