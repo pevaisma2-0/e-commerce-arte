@@ -1,17 +1,8 @@
 <?php
 function mostrar_productos() {
-    return json_encode([
-        [
-            "nombre"=> "Coca cola", 
-            "precio" => 180, 
-            "cantidad"=>10
-        ],
-        [
-            "nombre"=> "La Gotita", 
-            "precio" => 150, 
-            "cantidad"=>5 
-        ]
-    ]    
-    );
+    include_once("./conexion.php");
+    $consulta = $conexion->query("SELECT titulo, precio, categorias.nombre as categoria FROM productos INNER JOIN categorias ON productos.fk_categoria = categorias.id_categoria");
+    $registros = $consulta->fetch_all(1);
+    return json_encode($registros);
 
 }
