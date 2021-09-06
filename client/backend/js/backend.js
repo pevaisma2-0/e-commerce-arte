@@ -49,7 +49,6 @@ const agregarProducto = (e)=>{
             errorDiv.classList.remove('alert-danger');
             errorDiv.classList.add('alert-success');
             errorDiv.innerHTML = Response;   
-            console.log(Response);
         });
         select = 0
         textarea.innerHTML = ""
@@ -78,7 +77,6 @@ const agregarCategoria = ()=>{
                 errorCategoria.classList.remove('alert-danger');
                 errorCategoria.classList.add('alert-success');
                 errorCategoria.innerHTML = Response;
-                console.log(Response);  
             });
         }
 }
@@ -96,5 +94,7 @@ formCategoria.addEventListener('submit', (e)=>{
     e.preventDefault();
     agregarCategoria();
 });
-let section = document.querySelector('section').addEventListener('click', mostrarCategorias)
+document.addEventListener('DOMContentLoaded', (e)=>{
+    mostrarCategorias();
+})
 // ----Eventos----//
