@@ -16,3 +16,22 @@ router("POST","/producto", function(){
     $datos->cantidad = $_POST['cantidad'];
     echo modificar_producto($datos);
 });
+router("POST", "/agregar", function(){
+    include_once("./models/producto.php");
+    $datosProducto = new stdClass();
+    $datosProducto->titulo = $_POST['titulo'];
+    $datosProducto->precio = $_POST['precio'];
+    $datosProducto->categoria = $_POST['categoria'];
+    $datosProducto->descripcion = $_POST['descripcion'];
+
+    echo crear_producto($datosProducto);
+});
+router("POST", "/agregar-categoria", function (){
+    include_once("./models/producto.php");
+    $datosCategoria = $_POST['nombreCategoria'];
+    echo agregar_categoria($datosCategoria);
+});
+router("GET", "/mostrar-categorias" , function (){
+    include_once("./models/producto.php");
+    echo mostrar_categorias();
+});

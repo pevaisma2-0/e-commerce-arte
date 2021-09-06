@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <title>Document</title>
     <script>
       function retrieveData () {
-          fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/productos")
+          fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/mostrar-productos")
           .then((res) => res.json())
           .then((data) => {
-              // console.log(data);
-              // data = data[0];
-              // console.log(data.nombre);
-              for (let i=0; i < data.length; i++) {
-                const datos = document.createElement("div");
-                datos.innerText = "Producto: " + data[i].nombre + "\nCantidad: " + data[i].cantidad + "\nPrecio:" + data[i].precio;
-                const div = document.getElementById("datos");
-                div.appendChild(datos);
+            console.log(data)
+              let datos = document.getElementById('datos');
+              for (let i = 0; i < data.length; i++) {
+                datos.innerHTML +=`<h1>${data[i].titulo}</h1>
+                                <ul>
+                                  <li>${data[i].precio}</li>
+                                  <li>${data[i].nombre}</li>
+                                </ul>`
               }
             });
         };
@@ -33,6 +34,10 @@
   </head>
   <body>
     <button type="button" class="button">Retrieve data from api</button>
-    <div id="datos"></div>
+    <div id="datos">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
