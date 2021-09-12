@@ -15,3 +15,8 @@ function modificar_categorias($modificar){
     $consulta = $conexion->query("UPDATE categorias SET nombre ='$modificar->categoria' WHERE id_categoria =".$modificar->id_categoria);
     return json_encode("El nombre de la categoria es ahora: ".$modificar->categoria);
 }
+function eliminar_categorias($id_categoria){
+    include_once("./conexion.php");
+    $consulta = $conexion->query("DELETE FROM categorias WHERE id_categoria = ".$id_categoria);
+    return json_encode("Categoria Eliminada");
+}
