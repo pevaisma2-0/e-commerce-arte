@@ -8,3 +8,10 @@ router("GET", "/mostrar-categorias" , function (){
     include_once("./models/categorias.php");
     echo mostrar_categorias();
 });
+router("POST", "/modificar-categorias", function (){
+    include_once("./models/categorias.php");
+    $modificar = new stdClass();
+    $modificar-> id_categoria = $_POST['id_categoria'];
+    $modificar->categoria = $_POST['nombre'];
+    echo modificar_categorias($modificar);
+});
