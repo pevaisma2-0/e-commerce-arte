@@ -15,3 +15,7 @@ router("POST", "/modificar-categorias", function (){
     $modificar->categoria = $_POST['nombre'];
     echo modificar_categorias($modificar);
 });
+router("POST", "/eliminar-categoria/:id_categoria", function ($id_categoria){
+    include_once("./models/categorias.php");
+    echo eliminar_categorias($id_categoria);
+});
