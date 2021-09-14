@@ -26,7 +26,12 @@ router("POST", "/agregar", function(){
     $datosProducto->titulo = $_POST['titulo'];
     $datosProducto->precio = $_POST['precio'];
     $datosProducto->categoria = $_POST['categoria'];
+    $datosProducto->imagen = $_FILES['imagen']['name'];
+    $datosProducto->imagenTipo = $_FILES['imagen']['type'];
     $datosProducto->descripcion = $_POST['descripcion'];
 
+    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/e-commerce-ferreyra/boilerplate_front_back_php/imagen/';
+    move_uploaded_file($_FILES ['imagen']['tmp_name'] , $carpeta_destino . $datosProducto->imagen);
+    
     echo crear_producto($datosProducto);
 });

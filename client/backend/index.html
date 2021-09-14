@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <section class="container mt-5">
             <h1 class="text-center">Ingresar datos del Producto</h1>
-            <form id="agregarProductos" >
+            <form id="agregarProductos" enctype="multipart/form-data" >
                     <div class="row">
                         <div class="col-md-6 d-flex">
                             <input type="text" name="titulo" class="form-control my-3 mx-1 col-md-12" placeholder="Titulo">
@@ -44,6 +44,14 @@
                         </div>
                         <div class="col-md-6 d-flex mb-2">
                             <textarea name="descripcion" class="form-control col-12 mx-1" placeholder="Descripcion"></textarea>
+                        </div>
+                        <div class="col-md-6 d-flex mb2">
+                            <div class="container-input bg-info">
+                                <input type="file" name="imagen" id="file-1" class="inputfile inputfile-1" accept="image/*"/>
+                                <label for="file-1">
+                                    <p>Imagen del Producto</p>
+                                </label>
+                            </div>
                         </div>
                         <div class="error col-12 text-center"></div>
                     </div>
