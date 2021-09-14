@@ -10,5 +10,53 @@ select{
     height: 40px !important;
 }
 textarea{
+    min-height: 50px !important;
     max-height: 150px;
+}
+.container-input {
+    height: 45px;
+    text-align: center;
+    border-radius: 6px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 100%;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label i {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    font-size: 1.6em;
+}
+
+.iborrainputfile {
+	font-size: 2.2em; 
+	font-weight:normal;
+	font-family: 'Lato';
+}
+.inputfile-1 + label {
+    padding: 5px 0;
+    width: 100%;
+    color: #fff;
 }

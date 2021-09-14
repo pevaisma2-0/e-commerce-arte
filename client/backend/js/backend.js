@@ -29,16 +29,18 @@ const mostrarCategorias = ()=>{
 const agregarProducto = (e)=>{
     for (let i = 0; i < inputs.length; i++) {
         validacion = false;
-        if ((inputs[i].value == "") &&(select == "0")) {
+        if ((inputs[i].value == "")) {
                 errorDiv.classList.add('alert');
                 errorDiv.classList.add('alert-danger');
                 errorDiv.innerHTML = "!!Completar los Campos¡¡";
+                console.log(i);
         }
         else{
             validacion = true;
         }
     }
    if (validacion) {
+       console.log("Estoy aca")
         let envio = new FormData(formAgregar);
         fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/agregar", {
             method: "POST",
@@ -77,6 +79,8 @@ const agregarCategoria = ()=>{
                 errorCategoria.classList.remove('alert-danger');
                 errorCategoria.classList.add('alert-success');
                 errorCategoria.innerHTML = Response;
+                mostrarCategorias();
+                inputCategoria.value = "";
             });
         }
 }
