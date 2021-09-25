@@ -1,9 +1,8 @@
 <?php 
 //Tambien utilizamos un metodo get para traer solo un producto por el id
-router("GET","/producto/:id", function($id){
+router("GET","/producto-id/:id", function($id){
     include_once("./models/producto.php");
-    echo mostrar_producto($id);
-
+    echo mostrar_id_producto($id);
 });
 //En este caso utilizamos un metodo POST para enviar informacion que se actualizara en la base de datos. 
 router("POST","/producto", function(){

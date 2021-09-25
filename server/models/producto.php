@@ -1,14 +1,11 @@
 <?php
 //Todos los modelos son consultas a la base de datos para crear actualizar leer y elimnar informacion
 //Mostrar seria nuestro leer (SELECT)
-function mostrar_producto($id) {
-    //Esta creacion del producto deben reemplazarla con una consulta a la base de datos y traer la correspondiente segun el id
-    $producto = new stdClass();
-    $producto->id = $id;
-    $producto->nombre = "Coca cola";
-    $producto->cantidad = 10;
-
-    return json_encode($producto);
+function mostrar_id_producto($id){
+    include_once("./conexion.php");
+    $consulta = $conexion->query("SELECT * FROM productos WHERE id_producto = $id " );
+    $resultado = $consulta->fetch_all(1);
+    return json_encode($resultado);
 }
 //Modificar seria nuestro UPDATE
 function modificar_producto($datos) {
