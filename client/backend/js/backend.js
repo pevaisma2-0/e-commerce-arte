@@ -1,4 +1,5 @@
 // ----Variables----//
+//seccion de alta de productosy agregar categorias//
 let formAgregar = document.getElementById('agregarProductos');
 let formCategoria = document.getElementById('agregarCategoria');
 let inputs = formAgregar.querySelectorAll('input');
@@ -7,17 +8,55 @@ let textarea = formAgregar.querySelector('textarea').value;
 let select = document.getElementById('selectAgregar');
 let errorDiv = document.querySelector('.error');
 let errorCategoria = document.querySelector('.errorCategoria');
+//seccion de alta de productos y agregar categorias//
+//Listado de Productos//
+let tbody = document.getElementById('items')
+let listaProductos = document.getElementById('lista-productos').content
+let modalMensajes = document.getElementById('mensajes').content
+//Listado de Productos//
+//modal para agregar//
 var myModal = document.getElementById('exampleModal')
 var myInput = document.getElementById('myInput')
+//modal para agregar//
 var validacion = false;
+//Fragmentos//
+let frangmento = document.createDocumentFragment()
+let mensajesModal = document.createDocumentFragment()
+//Fragmentos//
 // ----Variables----//
 // -----------------//
 // ----Funciones----//
+const mostrarProductos =()=>{
+    fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/productos")
+    .then(res=>res.json())
+    .then(respuesta=>{
+        let clone
+        if (respuesta.length != 0) {
+                respuesta.forEach(producto=>{
+                    listaProductos.querySelector('tr th').textContent = producto.id_producto
+                    listaProductos.querySelectorAll('tr td')[0].textContent = producto.titulo
+                    listaProductos.querySelectorAll('tr td')[1].textContent = producto.precio
+                    listaProductos.querySelectorAll('tr td')[2].textContent = producto.descripcion
+                    listaProductos.querySelectorAll('tr td')[3].textContent = producto.categoria
+                    listaProductos.querySelector('tr td .btn-info').setAttribute("data-id", producto.id_producto)
+                    listaProductos.querySelector('tr td .btn-danger').setAttribute("data-id", producto.id_producto)
+                    listaProductos.querySelector('tr td .btn-danger').setAttribute("onclick", "eliminarProducto()")
+                    clone = listaProductos.cloneNode(true)
+                    frangmento.appendChild(clone)
+                })
+        }
+        else{
+            listaProductos.querySelector('tr th').textContent = "No se han cargado productos aun"
+            clone = listaProductos.cloneNode(true)
+            frangmento.appendChild(clone)
+        }
+        tbody.appendChild(frangmento)
+    })
+}
 const mostrarCategorias = ()=>{
     fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/mostrar-categorias")
     .then(res=>res.json())
     .then (async categoria=>{
-        console.log(categoria);
         for (let i = 0; i < categoria.length; i++) {
             const option = document.createElement('option');
             option.setAttribute("value", + categoria[i].id_categoria);
@@ -84,6 +123,29 @@ const agregarCategoria = ()=>{
             });
         }
 }
+const eliminarProducto =()=>{
+    Swal.fire({
+        title: '¿Desea Eliminar este producto?',
+        text: "No podra volver a recuperarlo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Acepto'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+              title:'Se elimino el producto con exito',
+              icon: 'success'
+          })
+          fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/productos")
+          .then(res=>res.json())
+          .then(respuesta=>{
+              console.log(respuesta)
+          })
+        }
+      })
+}
 // ----Funciones----//
 // -----------------//
 // ----Eventos----//
@@ -99,6 +161,7 @@ formCategoria.addEventListener('submit', (e)=>{
     agregarCategoria();
 });
 document.addEventListener('DOMContentLoaded', (e)=>{
-    mostrarCategorias();
+    mostrarProductos()
+    mostrarCategorias()
 })
 // ----Eventos----//

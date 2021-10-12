@@ -2,9 +2,25 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-size: 15px;
+    font-family: 'oswald';
 }
 a, a:hover{
     text-decoration: none;
+}
+li{
+    list-style: none;
+}
+table{
+    height: 200px;
+    overflow-y: scroll;
+}
+section{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
 }
 select{
     height: 40px !important;
@@ -12,6 +28,12 @@ select{
 textarea{
     min-height: 50px !important;
     max-height: 150px;
+}
+nav{
+    height: 60px;
+}
+form{
+    margin-top: -4em;
 }
 .container-input {
     height: 45px;
@@ -59,4 +81,9 @@ textarea{
     padding: 5px 0;
     width: 100%;
     color: #fff;
+}
+#listaProductos table{
+    min-height: 30px;
+    max-height: 50px;
+    overflow-y: scroll;
 }
