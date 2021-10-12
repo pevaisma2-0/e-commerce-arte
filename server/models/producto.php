@@ -10,12 +10,10 @@ function mostrar_id_producto($id){
 //Modificar seria nuestro UPDATE
 function modificar_producto($datos) {
     //Aca lo unico que se hace es crear un obj con la info que viene y se reeenvia. pero deberan crear una consulta a la base de datos, enviar esta informacion y modificar el registro. y al terminar enviar como  respuesta (return) el mensaje de ok o el mensaje de error
-    $producto = new stdClass();
-    $producto->id = $datos->id;
-    $producto->nombre = $datos->nombre;
-    $producto->cantidad = $datos->cantidad;
+    include_once("./conexion.php");
+    $consulta = $conexion->query("UPDATE productos SET titulo='$datos->titulo',descripcion='$datos->descripcion',precio='$datos->precio',imagen='$datos->imagen' ,fk_categoria = '$datos->categoria' WHERE id_producto = $datos->id");
 
-    return json_encode($producto);
+    return json_encode("Producto Modificado");
 }
 // Falta crear las funciones para eliminar y crear un nuevo registro
 function crear_producto($datos){
