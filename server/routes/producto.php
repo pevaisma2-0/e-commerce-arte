@@ -34,3 +34,7 @@ router("POST", "/agregar", function(){
     
     echo crear_producto($datosProducto);
 });
+router("POST", "/eliminar-producto/:id", function ($id){
+    include_once("./models/producto.php");
+    echo eliminar_producto($id);
+});
