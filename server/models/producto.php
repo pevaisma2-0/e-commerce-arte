@@ -21,3 +21,8 @@ function crear_producto($datos){
     $agregarProducto = $conexion->query("INSERT INTO productos VALUES (null, '$datos->titulo', '$datos->descripcion', '$datos->precio', '$datos->imagen', '$datos->categoria')");
     return json_encode("Datos Guardados");
 }
+function eliminar_producto($id){
+    include_once("./conexion.php");
+    $consulta = $conexion->query("DELETE FROM `productos` WHERE id_producto = ".$id);
+    return json_encode("Producto Eliminado");
+}
