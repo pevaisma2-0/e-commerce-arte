@@ -12,6 +12,7 @@ let errorCategoria = document.querySelector('.errorCategoria');
 //Listado de Productos//
 let tbody = document.getElementById('items')
 let listaProductos = document.getElementById('lista-productos').content
+let listaSinProductos = document.getElementById('lista-sin-productos').content
 let modalMensajes = document.getElementById('mensajes').content
 //Listado de Productos//
 //modal para agregar//
@@ -40,7 +41,7 @@ const mostrarProductos =()=>{
                     listaProductos.querySelectorAll('tr td')[3].textContent = producto.categoria
                     listaProductos.querySelector('tr td .btn-info').setAttribute("data-id", producto.id_producto)
                     listaProductos.querySelector('tr td .btn-danger').setAttribute("data-id", producto.id_producto)
-                    listaProductos.querySelector('tr td .btn-danger').setAttribute("onclick", "eliminarProducto()")
+                    listaProductos.querySelector('tr td .btn-danger').setAttribute("onclick", `eliminarProducto(${producto.id_producto})`)
                     clone = listaProductos.cloneNode(true)
                     frangmento.appendChild(clone)
                 })
@@ -86,10 +87,10 @@ const agregarProducto = (e)=>{
             body: envio
         }).then(res =>res.json())
         .then(Response=>{
-            errorDiv.classList.add('alert');
-            errorDiv.classList.remove('alert-danger');
-            errorDiv.classList.add('alert-success');
-            errorDiv.innerHTML = Response;   
+            Swal.fire({
+                title:'Se agrego el producto',
+                icon: 'success'
+            })  
         });
         select = 0
         textarea.innerHTML = ""
@@ -123,7 +124,8 @@ const agregarCategoria = ()=>{
             });
         }
 }
-const eliminarProducto =()=>{
+const eliminarProducto =id=>{
+    console.log(id)
     Swal.fire({
         title: '¿Desea Eliminar este producto?',
         text: "No podra volver a recuperarlo",
@@ -134,15 +136,22 @@ const eliminarProducto =()=>{
         confirmButtonText: 'Si, Acepto'
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-              title:'Se elimino el producto con exito',
-              icon: 'success'
-          })
-          fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/productos")
-          .then(res=>res.json())
-          .then(respuesta=>{
-              console.log(respuesta)
-          })
+            fetch(`http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/eliminar-producto/${id}`)
+            .then(res=>res.json())
+            .then(respuesta=>{
+                console.log(respuesta)
+                Swal.fire({
+                    title:'Se elimino el producto con exito',
+                    icon: 'success'
+                })
+            })
+            .catch(e=>{
+                Swal.fire({
+                    title:'Hubo un error',
+                    text: e,
+                    icon: 'error'
+                })
+            })
         }
       })
 }
@@ -153,9 +162,9 @@ formAgregar.addEventListener('submit', (e)=>{
     e.preventDefault();
     agregarProducto();
 });
-myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-});
+// myModal.addEventListener('shown.bs.modal', function () {
+//     myInput.focus()
+// });
 formCategoria.addEventListener('submit', (e)=>{
     e.preventDefault();
     agregarCategoria();
