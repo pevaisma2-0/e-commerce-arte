@@ -8,6 +8,9 @@
 a, a:hover{
     text-decoration: none;
 }
+h1{
+    font-size: 60px;
+}
 li{
     list-style: none;
 }
@@ -55,12 +58,13 @@ form{
 
 .inputfile + label {
     max-width: 100%;
-    font-size: 1.25em;
+    font-size: 1;
     font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     padding: 0.625rem 1.25rem;
 }
 
@@ -69,7 +73,7 @@ form{
     height: 1em;
     vertical-align: middle;
     fill: currentColor;
-    font-size: 1.6em;
+    font-size: 2em;
 }
 
 .iborrainputfile {
@@ -78,7 +82,7 @@ form{
 	font-family: 'Lato';
 }
 .inputfile-1 + label {
-    padding: 5px 0;
+    padding: 1px 0;
     width: 100%;
     color: #fff;
 }
@@ -86,4 +90,7 @@ form{
     min-height: 30px;
     max-height: 50px;
     overflow-y: scroll;
+}
+#listaProductos h1{
+    font-size: 60px;
 }
