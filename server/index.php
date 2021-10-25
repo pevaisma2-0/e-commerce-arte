@@ -13,3 +13,4 @@ include_once("./routes/producto.php");
 include_once("./routes/categorias.php");
 include_once("./routes/carrito.php");
 include_once("./routes/buscador.php");
+include_once("./routes/usuario.php");
