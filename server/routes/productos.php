@@ -5,4 +5,8 @@ router("GET", "/productos", function(){
     echo mostrar_productos();
 
 });
+router("GET", "/producto-categoria/:categoria", function ($categoria){
+    include_once('./models/productos.php');
+    echo producto_categoria($categoria);
+});
 
