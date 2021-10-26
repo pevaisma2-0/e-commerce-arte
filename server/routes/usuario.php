@@ -11,3 +11,7 @@ router("POST", "/agregar-usuario", function(){
     
     echo agregar_usuario($datosusuario);
 });
+router("GET", "/eliminar-usuario/:id", function ($id){
+    include_once("./models/usuario.php");
+    echo eliminar_usuario($id);
+});
