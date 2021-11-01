@@ -39,3 +39,20 @@ router("GET", "/eliminar-producto/:id", function ($id){
     include_once("./models/producto.php");
     echo eliminar_producto($id);
 });
+
+router("POST", "/modificar_producto/:id", function ($id){
+    include_once("./models/producto.php");
+    $datos = new stdClass();
+    $datos->id = $id;
+    $datos->titulo = $_POST['titulo'];
+    $datos->precio = $_POST['precio'];
+    $datos->descripcion = $_POST['descripcion'];
+    $datos->categoria = $_POST['categoria'];
+    $datos->imagen = $_FILES['imagen']['name'];
+    $datos->imagenTipo = $_FILES['imagen']['type'];
+
+    $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/e-commerce-ferreyra/boilerplate_front_back_php/imagen/';
+    move_uploaded_file($_FILES ['imagen']['tmp_name'] , $carpeta_destino . $datos->imagen);
+
+    echo modificar_producto($datos);
+});
