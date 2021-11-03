@@ -1,9 +1,5 @@
 # E-Commerce de Arte Digital 
 
-Este es un modelo basico de frontend en html y backend en php
-
-En el archivo router.php se debe agregar el path relativo. ej: 
-si la url del server es http://localhost/proyectos/boilerplate/server se debe agregar proyectos/boilerplate/server en la linea 6 donde dice 
-    $route = str_replace("proyectos/boilerplate/server", "", $route);
+Un E-commerce pensado especialmente para que los artistas digitales tengan su propia plataforma perzonalizada para vender sus obras de arte a sus seguidores, en todo el mundo, sin necesidad de stock o envios que demoran las cosas
 
 
