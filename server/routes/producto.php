@@ -56,3 +56,7 @@ router("POST", "/modificar_producto/:id", function ($id){
 
     echo modificar_producto($datos);
 });
+router("GET", "/categoria-productos/:categoria", function ($categoria=null){
+    include_once("./models/producto.php");
+    echo categoria_productos($categoria);
+});

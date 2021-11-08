@@ -26,3 +26,20 @@ function eliminar_producto($id){
     $consulta = $conexion->query("DELETE FROM `productos` WHERE id_producto = ".$id);
     return json_encode("Producto Eliminado");
 }
+function categoria_productos($categoria){
+    include_once("./conexion.php");
+    if ($categoria == null) {
+        echo json_encode(["valor"=>"true"]);
+    }
+    return;
+    $productosCat = "SELECT id_producto,titulo,descripcion,precio, imagen,categorias.nombre as categoria FROM productos INNER JOIN categorias ON productos.fk_categoria = categorias.id_categoria WHERE categorias.id_categoria = ".$categoria;
+    $consulta = $conexion->query($productosCat);
+    $row = $consulta->fetch_all(1);
+    if ($consulta->num_rows ==  null) {
+        $all = $conexion->query("SELECT id_producto,titulo,descripcion,precio, imagen,categorias.nombre as categoria FROM productos INNER JOIN categorias ON productos.fk_categoria = categorias.id_categoria");
+        $rowAll = $all->fetch_all(1);
+        echo json_encode($rowAll);
+    }else {
+        echo json_encode($row);
+    }
+}
