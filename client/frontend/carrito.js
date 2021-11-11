@@ -28,7 +28,7 @@ const pintarCard = (data) => {
     templateCard.querySelector("h5").textContent = producto.titulo;
     templateCard.querySelector("p").textContent = producto.precio;
     templateCard.querySelector("h6").textContent = producto.descripcion;
-    templateCard.querySelector("img").setAttribute("src",producto.imagen);
+    templateCard.querySelector("img").setAttribute("src","../imagen/"+ producto.imagen);
     templateCard.querySelector(".btn-dark").dataset.id = producto.id_producto;
     const clone = templateCard.cloneNode(true);
     fragment.appendChild(clone);
@@ -133,3 +133,7 @@ const btnAccion = (e) => {
 
   e.stopPropagation();
 };
+
+
+
+

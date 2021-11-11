@@ -7,31 +7,8 @@ let menu = document.querySelector(".nav-pills")
 
 //---Funciones---//
 
-const mostrarProductos = () => {
-  /*fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/mostrar-productos")
-    .then((res) => res.json())
-    .then((respuesta) => {
-     // console.log(respuesta)
-      respuesta.forEach((producto) => {
-        section.innerHTML += `<template id="${respuesta.id_producto}">
-                                <div class="col-12 mb-2 col-md-4">
-                                  <div class="card">
-                                    <img src="${respuesta.imagen}" alt="" class="card-img-top" />
-                                    <div class="card-body">
-                                      <h5>${respuesta.titulo}</h5>
-                                      <p>${respuesta.precio}</p>
-                                      <button class="btn btn-dark">Añadir al carrito</button>
-                                    </div>
-                                  </div>
-                                </div>
-                             </template>`;
-      });
-    });*/
-}; 
 
-
-
-const mostrarCategorias = () => {
+const mostrarCategorias = ()=> {
   fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/mostrar-categorias")
     .then((res) => res.json())
     .then(respuesta => {
@@ -46,6 +23,21 @@ const mostrarCategorias = () => {
     })
 }
 
+let secciones =()=>{
+  fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/mostrar-productos")
+  .then((res) => res.json())
+  .then((respuesta) => {
+    respuesta.forEach((categorias)=> {
+      if (categorias.id_categoria === categorias.fk_categoria){
+        fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/categoria-productos/"+respuesta.id_categoria)
+        .then((res) => res.json())
+        .then((respuesta) => {
+          section.innerHTML=``
+        })
+        }
+      })
+    })
+}
 
 crearSectionCategoria =()=>{
   fetch("http://localhost/e-commerce-ferreyra/boilerplate_front_back_php/server/mostrar-categorias")
@@ -62,7 +54,7 @@ crearSectionCategoria =()=>{
                                 <div class="album py-5 bg-light bg-secondary bg-gradient p-2 text-dark bg-opacity-75">
                                   <div class="container">
                                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="section">`
-                                      + mostrarProductos() +
+                                    
                                     `</div>
                                   </div>
                                 </div>
@@ -81,6 +73,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   crearSectionCategoria()
   // mostrarProductos()
   mostrarCategorias()
+
+  secciones()
   
-} );
-//---Eventos---//
+})
